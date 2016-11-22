@@ -1,26 +1,22 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import Input from '../components/Input'
+import Todos from '../components/Todos'
+import Info from '../components/Info'
 import * as pageActions from '../actions/PageActions'
 
 class App extends Component {
   render() {
-    const todos = this.props.todos;
-    const {toggleTodo, addTodo} = this.props.pageActions;
+    const {toggleTodo, addTodo, refreshStats} = this.props.pageActions;
+    const {todos, stats} = this.props;
+
     //const visibility  = this.props.visibility
-
-    const todosElems = todos.map((el,i)=>{
-      let className = el.checked ? 'checked' : 'unchecked';
-      return <li className={className} key={i} onClick={toggleTodo.bind(null,{i})}>{el.text}</li>
-    })
-
     return (
       <div>
-        <input type='text'/>
-        <button onClick={()=>{addTodo('new ToDo!')}}>Добавить</button>
-        <ul>
-          {todosElems}
-        </ul>
+        <Input addTodo={addTodo} refreshStats={refreshStats}/>
+        <Info stats={stats}/>
+        <Todos todos={todos} toggleTodo={toggleTodo} refreshStats={refreshStats}/>
       </div>
     )
   }
@@ -29,7 +25,8 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     visibility: state.visibility,
-    todos: state.todos
+    todos: state.todos,
+    stats: state.stats
   }
 }
 

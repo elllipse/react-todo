@@ -63,4 +63,15 @@ table {
       text-decoration: line-through;
     }
   }
+  .info {
+    display: inline-block;
+    margin-top: 10px;
+    p {
+      background-color: rgba(118, 189, 255, 0.32);
+      margin: 3px;
+      .val {
+        font-weight: bold;
+      }
+    }
+  }
 }

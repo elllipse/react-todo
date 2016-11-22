@@ -2,9 +2,14 @@
 const initialState = {
   visibility: 'SHOW_ALL',
   todos: [{
-    text: 'get a job',
+    text: 'do something',
     checked: false
-  }]
+  }],
+  stats: {
+    done: 0,
+    undone: 1,
+    all: 1
+  }
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -27,6 +32,18 @@ export default function rootReducer(state = initialState, action) {
           }
           return todo
         })
+      }
+
+    case 'REFRESH_STATS':
+      return {
+        ...state,stats: {
+          done: state.todos.filter((todo)=> {
+            return todo.checked;
+          }),
+          undone: state.todos.filter((todo)=> {
+            return !todo.checked;
+          })
+        }
       }
 
     case 'FILTER_TODO':

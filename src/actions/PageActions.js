@@ -17,6 +17,15 @@ export function toggleTodo(id) {
 
 }
 
+export function refreshStats() {
+
+  return {
+    type: 'REFRESH_STATS',
+    payload: ''
+  }
+
+}
+
 export function visibleFilter(filter) {
 
   return {
