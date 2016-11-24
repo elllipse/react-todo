@@ -55,13 +55,18 @@ table {
     padding: 10px;
   }
   li {
-    background-color: #e3e3e3;
+    background-color: rgba(195, 23, 0, 0.15);
     padding: 5px;
     list-style-type: circle;
+    margin-bottom: 3px;
     &.checked {
       list-style-type: disc;
       text-decoration: line-through;
+      background-color: rgba(0, 236, 134, 0.17);
     }
+  }
+  .visibility_btns {
+    margin-top: 10px;
   }
   .info {
     display: inline-block;

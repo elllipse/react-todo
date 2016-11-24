@@ -37,12 +37,23 @@ export default function rootReducer(state = initialState, action) {
     case 'REFRESH_STATS':
       return {
         ...state,stats: {
-          done: state.todos.filter((todo)=> {
-            return todo.checked;
-          }),
-          undone: state.todos.filter((todo)=> {
-            return !todo.checked;
-          })
+          all: state.todos.length,
+
+          done: (()=>{
+            let count = 0;
+            state.todos.map((todo)=> {
+              if (todo.checked) count++;
+            })
+            return count;
+          })(),
+
+          undone: (()=>{
+            let count = 0;
+            state.todos.map((todo)=> {
+              if (!todo.checked) count++;
+            })
+            return count;
+          })()
         }
       }
 

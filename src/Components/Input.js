@@ -4,7 +4,12 @@ export default class Input extends Component {
 
   constructor() {
     super();
-    this.onBtnClickHandler = this.onBtnClickHandler.bind(this)
+    this.onVisibilityBtnClickHandler = this.onVisibilityBtnClickHandler.bind(this);
+    this.onBtnClickHandler = this.onBtnClickHandler.bind(this);
+  }
+
+  onVisibilityBtnClickHandler(filter) {
+    this.props.visibleFilter(filter);
   }
 
   onBtnClickHandler(e) {
@@ -17,11 +22,17 @@ export default class Input extends Component {
 
   render() {
     return (
-      <form onSubmit={this.onBtnClickHandler}>
-        <input ref='input' type='text'/>
-        <button >Добавить</button>
-      </form>
-
+      <div>
+        <form onSubmit={this.onBtnClickHandler}>
+          <input ref='input' type='text'/>
+          <button >Добавить</button>
+        </form>
+        <div className='visibility_btns'>
+          <button onClick={()=>{this.onVisibilityBtnClickHandler('SHOW_ALL')}}>Все</button>
+          <button onClick={()=>{this.onVisibilityBtnClickHandler('SHOW_DONE')}}>Выполнено</button>
+          <button onClick={()=>{this.onVisibilityBtnClickHandler('SHOW_UNDONE')}}>Невыполнено</button>
+        </div>
+      </div>
     )
   }
 }

@@ -8,15 +8,16 @@ import * as pageActions from '../actions/PageActions'
 
 class App extends Component {
   render() {
-    const {toggleTodo, addTodo, refreshStats} = this.props.pageActions;
-    const {todos, stats} = this.props;
+    const {toggleTodo, addTodo, refreshStats, visibleFilter} = this.props.pageActions;
+    const {todos, stats, visibility} = this.props;
+
 
     //const visibility  = this.props.visibility
     return (
       <div>
-        <Input addTodo={addTodo} refreshStats={refreshStats}/>
-        <Info stats={stats}/>
-        <Todos todos={todos} toggleTodo={toggleTodo} refreshStats={refreshStats}/>
+        <Input addTodo={addTodo} refreshStats={refreshStats} visibleFilter={visibleFilter}/>
+        <Info all={stats.all} done={stats.done} undone={stats.undone} filter={visibility}/>
+        <Todos todos={todos} toggleTodo={toggleTodo} refreshStats={refreshStats} visibility={visibility}/>
       </div>
     )
   }
