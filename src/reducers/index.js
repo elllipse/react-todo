@@ -1,14 +1,21 @@
+// import { combineReducers } from 'redux'
+// import page from './page'
+// import user from './user'
+//
+//
+// export default combineReducers({
+//   page,
+//   user
+// })
+
 
 const initialState = {
   visibility: 'SHOW_ALL',
-  todos: [{
-    text: 'do something',
-    checked: false
-  }],
+  todos: [],
   stats: {
     done: 0,
-    undone: 1,
-    all: 1
+    undone: 0,
+    all: 0
   }
 }
 
@@ -21,6 +28,16 @@ export default function rootReducer(state = initialState, action) {
           text:action.text,
           checked: false
         }]
+      }
+
+    case 'DELETE_TODO':
+      return {
+        ...state,
+        todos: state.todos.filter((todo,index)=>{
+          if (index !== action.id) {
+            return todo;
+          }
+        })
       }
 
     case 'TOGGLE_TODO':
@@ -36,7 +53,8 @@ export default function rootReducer(state = initialState, action) {
 
     case 'REFRESH_STATS':
       return {
-        ...state,stats: {
+        ...state,
+        stats: {
           all: state.todos.length,
 
           done: (()=>{

@@ -59,11 +59,17 @@ table {
     padding: 5px;
     list-style-type: circle;
     margin-bottom: 3px;
+    transition: background-color .5s ease;
     &.checked {
       list-style-type: disc;
       text-decoration: line-through;
       background-color: rgba(0, 236, 134, 0.17);
     }
+  }
+  .delete_todo {
+    float: right;
+    font-family: sans-serif;
+    color: #666;
   }
   .visibility_btns {
     margin-top: 10px;
@@ -78,5 +84,42 @@ table {
         font-weight: bold;
       }
     }
+  }
+}
+
+.example-enter {
+  animation: slideInRight .5s ease both;
+}
+
+.example-enter.example-enter-active {
+
+}
+
+.example-leave {
+  animation: slideOutRight .5s ease both;
+}
+
+.example-leave.example-leave-active {
+
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-10%);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes slideOutRight {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(10%);
   }
 }

@@ -8,6 +8,15 @@ export function addTodo(text) {
 
 }
 
+export function deleteTodo(id) {
+
+  return {
+    type: 'DELETE_TODO',
+    id: id
+  }
+
+}
+
 export function toggleTodo(id) {
 
   return {
